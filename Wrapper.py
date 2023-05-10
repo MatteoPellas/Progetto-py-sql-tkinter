@@ -1,12 +1,14 @@
 import pymssql
 
+
 class Wrapper:
-
     conn = 0
-    #192.168.40.16\sqlexpress
-    #5.172.64.20\sqlexpress
 
-    def __init__(self, server = "192.168.40.16\sqlexpress",user = "4FI_Pellas", password = "xxx123##", database = "4FI_Pellas"):
+    # 192.168.40.16\sqlexpress
+    # 5.172.64.20\sqlexpress
+
+    def __init__(self, server="192.168.40.16\sqlexpress", user="4FI_Pellas", password="xxx123##",
+                 database="4FI_Pellas"):
         self._server = server
         self._user = user
         self._password = password
@@ -14,24 +16,24 @@ class Wrapper:
 
     def connessione(self):
         try:
-            Wrapper.conn = pymssql.connect(server = self._server, user = self._user, password = self._password, database = self._database)
+            Wrapper.conn = pymssql.connect(server=self._server, user=self._user, password=self._password,
+                                           database=self._database)
             print("\nConnessione effettuata DB DB4FI!\n")
             return Wrapper.conn
-        
+
         except:
             print("connessione non riuscita")
             return 0
-        
+
     def disconnessione(self, co):
-	
+
         try:
             co.close()
             print("\nCHIUSURA Connessione effettuata DB DB4FI!\n")
-            
+
         except:
             print("\nCHIUSURA Connessione NON riuscita DB DB4FI!\n")
             return 0
-        
 
     def creaMansione(self):
         c = self.connessione()
@@ -48,7 +50,7 @@ class Wrapper:
                     Taiffa_oraria decimal
                     )
                     """
-            cursore= c.cursor()
+            cursore = c.cursor()
             cursore.execute(ope)
             c.commit()
             print("\nCREATE effettuata (o la tabella esiste) su DB DB4FI!\n")
@@ -72,7 +74,7 @@ class Wrapper:
                     Responsabile varchar(20)
                     )
                     """
-            cursore= c.cursor()
+            cursore = c.cursor()
             cursore.execute(ope)
             c.commit()
             print("\nCREATE effettuata (o la tabella esiste) su DB DB4FI!\n")
@@ -81,7 +83,7 @@ class Wrapper:
         self.disconnessione(c)
 
     def creaDipendente(self):
-        
+
         c = self.connessione()
         try:
             ope = """
@@ -105,7 +107,7 @@ class Wrapper:
                     FOREIGN KEY (Id_Reparto) references Reparto (Id_Reparto)
                     )
                     """
-            cursore= c.cursor()
+            cursore = c.cursor()
             cursore.execute(ope)
             c.commit()
             print("\nCREATE effettuata (o la tabella esiste) su DB DB4FI!\n")
@@ -116,22 +118,22 @@ class Wrapper:
     def insertMansione(self, parametro):
         try:
             # Connessione
-            #WrapperDB4D.conn = self.connetti() 
-            c = self.connessione() 
+            # WrapperDB4D.conn = self.connetti()
+            c = self.connessione()
             cursore = c.cursor()
             # NB %d anche per i DECIMAL!!!!!!!
-            
+
             insertParametrica = " INSERT INTO Persona VALUES (%s , %s , %d  ) "
             print(parametro)
-            if  isinstance(parametro, tuple)  : # UNA sola riga
+            if isinstance(parametro, tuple):  # UNA sola riga
                 print("E' UNA TUPLA")
-                
+
                 cursore.execute(insertParametrica, parametro)
                 c.commit()
                 print("INSERIMENTO RIGA AVVENUTO", parametro)
                 self.disconnessione(c)
                 return "OK"
-            elif  isinstance(parametro, list)    : # pi˘ righe
+            elif isinstance(parametro, list):  # pi˘ righe
                 print("E' UNA LISTA")
                 cursore.executemany(insertParametrica, parametro)
                 c.commit()
@@ -146,27 +148,26 @@ class Wrapper:
             print("\nPROC Inserimento/i: PROBLEMA !")
             self.disconnessione(c)
             return "KO"
-        
-        
+
     def insertReparto(self, parametro):
         try:
             # Connessione
-            #WrapperDB4D.conn = self.connetti() 
-            c = self.connessione() 
+            # WrapperDB4D.conn = self.connetti()
+            c = self.connessione()
             cursore = c.cursor()
             # NB %d anche per i DECIMAL!!!!!!!
-            
+
             insertParametrica = " INSERT INTO Conferenza VALUES (%s , %s , %s  ) "
             print(parametro)
-            if  isinstance(parametro, tuple)  : # UNA sola riga
+            if isinstance(parametro, tuple):  # UNA sola riga
                 print("E' UNA TUPLA")
-                
+
                 cursore.execute(insertParametrica, parametro)
                 c.commit()
                 print("INSERIMENTO RIGA AVVENUTO", parametro)
                 self.disconnessione(c)
                 return "OK"
-            elif  isinstance(parametro, list)    : # pi˘ righe
+            elif isinstance(parametro, list):  # pi˘ righe
                 print("E' UNA LISTA")
                 cursore.executemany(insertParametrica, parametro)
                 c.commit()
@@ -181,27 +182,26 @@ class Wrapper:
             print("\nPROC Inserimento/i: PROBLEMA !")
             self.disconnessione(c)
             return "KO"
-       
-        
+
     def insertDipendente(self, parametro):
         try:
             # Connessione
-            #WrapperDB4D.conn = self.connetti() 
-            c = self.connessione() 
+            # WrapperDB4D.conn = self.connetti()
+            c = self.connessione()
             cursore = c.cursor()
             # NB %d anche per i DECIMAL!!!!!!!
-            
+
             insertParametrica = " INSERT INTO Iscrizione VALUES (%s , %s , %s , %s, %s , %s  , %d , %d ; %s , %s ) "
             print(parametro)
-            if  isinstance(parametro, tuple)  : # UNA sola riga
+            if isinstance(parametro, tuple):  # UNA sola riga
                 print("E' UNA TUPLA")
-                
+
                 cursore.execute(insertParametrica, parametro)
                 c.commit()
                 print("INSERIMENTO RIGA AVVENUTO", parametro)
                 self.disconnessione(c)
                 return "OK"
-            elif  isinstance(parametro, list)    : # pi˘ righe
+            elif isinstance(parametro, list):  # pi˘ righe
                 print("E' UNA LISTA")
                 cursore.executemany(insertParametrica, parametro)
                 c.commit()
@@ -216,8 +216,8 @@ class Wrapper:
             print("\nPROC Inserimento/i: PROBLEMA !")
             self.disconnessione(c)
             return "KO"
-        
-    def visualizza_tabella(self,nome_tabella):
+
+    def visualizza_tabella(self, nome_tabella):
         c = self.connessione()
         cursore = c.cursor()
         try:
@@ -229,7 +229,6 @@ class Wrapper:
             return 0
         finally:
             self.disconnessione(c)
-        
 
     def q1(self):
         c = self.connessione()
@@ -249,8 +248,7 @@ class Wrapper:
             print("\nProblemi SELECT su DB CRD2122!\n")
         self.disconnessione(c)
         return lista
-    
-    
+
     def q2(self):
         c = self.connessione()
         lista = []
@@ -269,8 +267,7 @@ class Wrapper:
             print("\nProblemi SELECT su DB CRD2122!\n")
         self.disconnessione(c)
         return lista
-    
-    
+
     def q3(self):
         c = self.connessione()
         lista = []
@@ -291,13 +288,11 @@ class Wrapper:
             print("\nProblemi SELECT su DB CRD2122!\n")
         self.disconnessione(c)
         return lista
-    
+
+
 """
 a. Calcolo dello stipendio medio dei dipendenti raggruppati per città
 b. Elenco dei dipendenti che sono nati nel mese di aprile, maggio e giugno(valori
 inseriti anche da input)
 c. Calcolo dello stipendio minimo e massimo per ciascun reparto
 """
-        
-        
-    

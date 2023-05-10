@@ -8,6 +8,12 @@ class Application(QWidget):
     def __init__(self):
         super().__init__()
 
+        self.new_window = None
+        self.w: Wrapper = Wrapper()
+        self.w.creaDipendente()
+        self.w.creaMansione()
+        self.w.creaReparto()
+
         # Creazione dei campi di input
         self.server_label = QLabel('Server')
         self.server_input = QLineEdit()
@@ -49,11 +55,22 @@ class Application(QWidget):
         self.new_window = QWidget()
         self.new_window.setWindowTitle('Connected')
 
-        w: Wrapper = Wrapper()
-        w.creaDipendente()
-        w.creaMansione()
-        w.creaReparto()
+        self.b1 = QPushButton('Inserisci Mansione')
+        self.b2 = QPushButton('Inserisci Reparto')
+        self.b3 = QPushButton('Inserisci Dipendenti')
+        self.b4 = QPushButton('Visualizza')
+        self.b5 = QPushButton('Calcolo dello stipendio medio')
+        self.b6 = QPushButton('Elenco dei dipendenti')
+        self.b7 = QPushButton('Calcolo dello stipendio minimo')
 
+        layout = QVBoxLayout()
+        for i, j in zip(
+            [self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7],
+            []
+        ):
+            layout.addWidget(i.clicked.connect(j))
+
+        self.new_window.setLayout(layout)
 
         self.new_window.show()
 
