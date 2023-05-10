@@ -47,6 +47,27 @@ class Application(QWidget):
         self.setLayout(layout)
         self.setWindowTitle('Application')
 
+    def b1f(self):
+        print("b1f works")
+
+    def b2f(self):
+        print("b2f works")
+
+    def b3f(self):
+        print("b3f works")
+
+    def b4f(self):
+        print("b4f works")
+
+    def b5f(self):
+        print("b5f works")
+
+    def b6f(self):
+        print("b6f works")
+
+    def b7f(self):
+        print("b7f works")
+
     def connect(self):
         # Qui andrebbe il codice per connettersi al database utilizzando i valori inseriti dall'utente
         # Ad esempio, si potrebbe utilizzare il modulo mysql.connector per Python
@@ -64,11 +85,11 @@ class Application(QWidget):
         self.b7 = QPushButton('Calcolo dello stipendio minimo')
 
         layout = QVBoxLayout()
-        for i, j in zip(
-            [self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7],
-            []
-        ):
-            layout.addWidget(i.clicked.connect(j))
+        print("alksdj")
+        for i, j in zip([self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7],
+                        [self.b1f, self.b2f, self.b3f, self.b4f, self.b5f, self.b6f, self.b7f]):
+            i.clicked.connect(j)
+            layout.addWidget(i)
 
         self.new_window.setLayout(layout)
 
@@ -76,6 +97,7 @@ class Application(QWidget):
 
 
 if __name__ == '__main__':
+    # Cose di pyqt5
     app = QApplication(sys.argv)
     login = Application()
     login.show()
