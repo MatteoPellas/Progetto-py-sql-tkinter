@@ -6,7 +6,7 @@ class Wrapper:
     #192.168.40.16\sqlexpress
     #5.172.64.20\sqlexpress
 
-    def __init__(self, server = "5.172.64.20\sqlexpress",user = "4FI_Pellas", password = "xxx123##", database = "4FI_Pellas"):
+    def __init__(self, server = "192.168.40.16\sqlexpress",user = "4FI_Pellas", password = "xxx123##", database = "4FI_Pellas"):
         self._server = server
         self._user = user
         self._password = password
