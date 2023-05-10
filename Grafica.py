@@ -1,6 +1,9 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
 
+from Wrapper import Wrapper
+
+
 class Application(QWidget):
     def __init__(self):
         super().__init__()
@@ -46,10 +49,14 @@ class Application(QWidget):
         self.new_window = QWidget()
         self.new_window.setWindowTitle('Connected')
 
-        self.label = QLabel('ciao', self.new_window)
-        self.label.move(50, 50)
+        w: Wrapper = Wrapper()
+        w.creaDipendente()
+        w.creaMansione()
+        w.creaReparto()
+
 
         self.new_window.show()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
