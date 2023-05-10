@@ -61,19 +61,19 @@ def Main():
 
         elif c == 5:
             try:
-                w.q1
+                w.q1()
                 print("Quary eseguita con successo!")
             except:
                 print("ERRORE")
         elif c == 6:
             try:
-                w.q2
+                w.q2()
                 print("Quary eseguita con successo!")
             except:
                 print("ERRORE")
         elif c == 7:
             try:
-                w.q3
+                w.q3()
                 print("Quary eseguita con successo!")
             except:
                 print("ERRORE")

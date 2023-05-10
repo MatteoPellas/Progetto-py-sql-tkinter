@@ -52,3 +52,10 @@ if __name__ == '__main__':
     login = Application()
     login.show()
     sys.exit(app.exec_())
+
+"""
+Calcolo dello stipendio medio dei dipendenti raggruppati per città
+b. Elenco dei dipendenti che sono nati nel mese di aprile, maggio e giugno(valori
+inseriti anche da input)
+c. Calcolo dello stipendio minimo e massimo per ciascun reparto
+"""
