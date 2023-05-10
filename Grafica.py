@@ -1,3 +1,10 @@
 class Application:
     def __init__(self):
         pass
+
+
+# INSERISCI MANSIONI
+# FINESTRA REPARTO
+# FINESTRA DIPENDENTI
+# CREA CONNESSIONE
+# TUTTE LE QUERY

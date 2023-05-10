@@ -56,6 +56,6 @@ def Main():
             print(tabella)
                                 
 Main()
-        
+
 # TEST
 # TEST
