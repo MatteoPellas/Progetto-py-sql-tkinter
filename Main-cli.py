@@ -23,7 +23,11 @@ def Main():
         c = int(input("1) Inserisci Mansione\n\
                       2) Inserisci Reparto\n\
                       3) Inserisci Dipendenti\n\
-                      4) Visualizza \
+                      4) Visualizza \n \
+                      5) Calcolo dello stipendio medio dei dipendenti raggruppati per città\n\
+                      6) Elenco dei dipendenti che sono nati nel mese di aprile, maggio e giugno\n\
+                      7) Calcolo dello stipendio minimo e massimo per ciascun reparto\n\
+                      8) Esci\n\
                     "))
         if c == 1:
             idM = input('Inserisci id\n')
@@ -54,8 +58,29 @@ def Main():
             nometabella=input("Inserisci il nome della tabella che vuoi visualizzare")
             tabella=w.visualizza_tabella(nometabella)
             print(tabella)
+
+        elif c == 5:
+            try:
+                w.q1
+                print("Quary eseguita con successo!")
+            except:
+                print("ERRORE")
+        elif c == 6:
+            try:
+                w.q2
+                print("Quary eseguita con successo!")
+            except:
+                print("ERRORE")
+        elif c == 7:
+            try:
+                w.q3
+                print("Quary eseguita con successo!")
+            except:
+                print("ERRORE")
+
+        elif c == 8:
+            stop = True
                                 
 Main()
 
-# TEST
-# TEST
+
