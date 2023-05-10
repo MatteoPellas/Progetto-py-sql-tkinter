@@ -45,6 +45,10 @@ class Application(QWidget):
         # Creazione della nuova finestra
         self.new_window = QWidget()
         self.new_window.setWindowTitle('Connected')
+
+        self.label = QLabel('ciao', self.new_window)
+        self.label.move(50, 50)
+
         self.new_window.show()
 
 if __name__ == '__main__':
