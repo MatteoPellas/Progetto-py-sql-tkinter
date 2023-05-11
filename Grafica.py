@@ -86,10 +86,13 @@ class Application(QWidget):
 
         layout = QVBoxLayout()
         print("alksdj")
-        for i, j in zip([self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7],
+        for i, j in zip([self.b1,  self.b2,  self.b3,  self.b4,  self.b5,  self.b6,  self.b7],
                         [self.b1f, self.b2f, self.b3f, self.b4f, self.b5f, self.b6f, self.b7f]):
             i.clicked.connect(j)
             layout.addWidget(i)
+            """
+            layout.addWidget({ i.clicked.connect(j); i });
+            """
 
         self.new_window.setLayout(layout)
 
