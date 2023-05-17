@@ -56,7 +56,8 @@ class Wrapper:
             print("\nCREATE effettuata (o la tabella esiste) su DB DB4FI!\n")
         except:
             print("errore")
-        self.disconnessione(c)
+        finally:
+            self.disconnessione(c)
 
     def creaReparto(self):
         ok = 1
@@ -80,7 +81,8 @@ class Wrapper:
             print("\nCREATE effettuata (o la tabella esiste) su DB DB4FI!\n")
         except:
             print("errore")
-        self.disconnessione(c)
+        finally:
+            self.disconnessione(c)
 
     def creaDipendente(self):
 
@@ -113,7 +115,8 @@ class Wrapper:
             print("\nCREATE effettuata (o la tabella esiste) su DB DB4FI!\n")
         except:
             print("errore")
-        self.disconnessione(c)
+        finally:
+            self.disconnessione(c)
 
     def insertMansione(self, parametro):
         try:
