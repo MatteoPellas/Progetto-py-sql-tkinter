@@ -1,5 +1,8 @@
 import sys
-from PyQt5 import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
+
+from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout
+
 from Wrapper import Wrapper
 
 
@@ -7,16 +10,23 @@ class Application(QWidget):
     def __init__(self):
         super().__init__()
 
+        self.new_window1 = None
+        self.new_window2 = None
+        self.new_window3 = None
+        self.new_window4 = None
+        self.new_window5 = None
+        self.new_window6 = None
+        self.new_window7 = None
         style = QApplication.setStyle("Fusion")
 
         # Impostazione di una palette di colori personalizzata
-        palette = QPalette()
-        palette.setColor(QPalette.Window, QColor(234, 242, 248))  # Colore di sfondo
-        palette.setColor(QPalette.WindowText, QColor(0, 0, 0))  # Colore del testo
-        QApplication.setPalette(palette)
+        self.palette = QPalette()
+        self.palette.setColor(QPalette.Window, QColor(234, 242, 248))  # Colore di sfondo
+        self.palette.setColor(QPalette.WindowText, QColor(0, 0, 0))  # Colore del testo
+        QApplication.setPalette(self.palette)
 
         self.new_window = None
-        self.w:Wrapper = Wrapper()
+        self.w: Wrapper = Wrapper()
         self.w.creaDipendente()
         self.w.creaMansione()
         self.w.creaReparto()
@@ -34,10 +44,8 @@ class Application(QWidget):
         self.database_label = QLabel('Nome Database')
         self.database_input = QLineEdit()
 
-
         self.connect_button = QPushButton('Connect')
         self.connect_button.clicked.connect(self.connect)
-
 
         layout = QVBoxLayout()
         layout.addWidget(self.server_label)
@@ -54,8 +62,8 @@ class Application(QWidget):
         self.setWindowTitle('Application')
 
     def b1f(self):
-        new_window = QWidget()
-        new_window.setWindowTitle('Inserisci Mansione')
+        self.new_window1 = QWidget()
+        self.new_window1.setWindowTitle('Inserisci Mansione')
 
         id_label = QLabel('ID:')
         id_input = QLineEdit()
@@ -80,12 +88,12 @@ class Application(QWidget):
 
         layout.addWidget(insert_button)
 
-        new_window.setLayout(layout)
-        new_window.show()
+        self.new_window1.setLayout(layout)
+        self.new_window1.show()
 
     def b2f(self):
-        new_window = QWidget()
-        new_window.setWindowTitle('Inserisci Reparto')
+        self.new_window2 = QWidget()
+        self.new_window2.setWindowTitle('Inserisci Reparto')
 
         id_label = QLabel('ID:')
         id_input = QLineEdit()
@@ -110,12 +118,12 @@ class Application(QWidget):
 
         layout.addWidget(insert_button)
 
-        new_window.setLayout(layout)
-        new_window.show()
+        self.new_window2.setLayout(layout)
+        self.new_window2.show()
 
     def b3f(self):
-        new_window = QWidget()
-        new_window.setWindowTitle('Inserisci Dipendente')
+        self.new_window3 = QWidget()
+        self.new_window3.setWindowTitle('Inserisci Dipendente')
 
         id_matricola_label = QLabel('ID Matricola:')
         id_matricola_input = QLineEdit()
@@ -172,12 +180,12 @@ class Application(QWidget):
 
         layout.addWidget(insert_button)
 
-        new_window.setLayout(layout)
-        new_window.show()
+        self.new_window3.setLayout(layout)
+        self.new_window3.show()
 
     def b4f(self):
-        new_window = QWidget()
-        new_window.setWindowTitle('Visualizza')
+        self.new_window4 = QWidget()
+        self.new_window4.setWindowTitle('Visualizza')
 
         table_label = QLabel('Nome della Tabella:')
         table_input = QLineEdit()
@@ -191,58 +199,52 @@ class Application(QWidget):
 
         layout.addWidget(insert_button)
 
-        new_window.setLayout(layout)
-        new_window.show()
+        self.new_window4.setLayout(layout)
+        self.new_window4.show()
 
     def b5f(self):
-        result = self.w.q1()
 
-        app = QApplication([])
-        window = QWidget()
+        self.window5 = QWidget()
         layout = QVBoxLayout()
 
-        for el in result:
-            label = QLabel(str(el[0]))
+        for el in self.w.q1():
+            label = QLabel(str(el))
             layout.addWidget(label)
 
-        window.setLayout(layout)
-        window.show()
-        app.exec_()
+        self.window5.setLayout(layout)
+        self.window5.show()
 
     def b6f(self):
         result = self.w.q2()
 
-        app = QApplication([])
-        window = QWidget()
+        self.window6 = QWidget()
         layout = QVBoxLayout()
 
         for el in result:
             label = QLabel(f"Nome: {el[0]}, Cognome: {el[1]}")
             layout.addWidget(label)
 
-        window.setLayout(layout)
-        window.show()
-        app.exec_()
+        self.window6.setLayout(layout)
+        self.window6.show()
 
     def b7f(self):
         result = self.w.q3()
 
-        app = QApplication([])
-        window = QWidget()
+        self.window7 = QWidget()
+        self.window7.setWindowTitle("asd")
         layout = QVBoxLayout()
 
         for el in result:
             label = QLabel(f"Stipendio minimo: {el[0]}, Stipendio massimo: {el[1]}")
             layout.addWidget(label)
 
-        window.setLayout(layout)
-        window.show()
-        app.exec_()
+        self.window7.setLayout(layout)
+        self.window7.show()
 
     def connect(self):
 
-        self.new_window = QWidget()
-        self.new_window.setWindowTitle('Connected')
+        self.new_windowa = QWidget()
+        self.new_windowa.setWindowTitle('Connected')
 
         self.b1 = QPushButton('Inserisci Mansione')
         self.b2 = QPushButton('Inserisci Reparto')
@@ -253,16 +255,14 @@ class Application(QWidget):
         self.b7 = QPushButton('Calcolo dello stipendio minimo')
 
         layout = QVBoxLayout()
-        print("alksdj")
-        for i, j in zip([self.b1,  self.b2,  self.b3,  self.b4,  self.b5,  self.b6,  self.b7],
+        for i, j in zip([self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7],
                         [self.b1f, self.b2f, self.b3f, self.b4f, self.b5f, self.b6f, self.b7f]):
             i.clicked.connect(j)
             layout.addWidget(i)
 
+        self.new_windowa.setLayout(layout)
 
-        self.new_window.setLayout(layout)
-
-        self.new_window.show()
+        self.new_windowa.show()
 
 
 if __name__ == '__main__':
@@ -271,4 +271,3 @@ if __name__ == '__main__':
     login = Application()
     login.show()
     sys.exit(app.exec_())
-
